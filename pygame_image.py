@@ -16,20 +16,22 @@ def main():
     kk_rct = kk_img.get_rect() #こうかとんRectを取得する
     kk_rct.center = 300, 200
     tmr = 0
+    move_lst = [(0, -1), (0, +1), (+2, 0), (-2, 0), (0, 0)]
 
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-
+        move = 4
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip(0, -1)
+            move = 0
         elif key_lst[pg.K_DOWN]:
-            kk_rct.move_ip(0, +1)
+            move = 1
         elif key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip(+2, 0)
+            move = 2
         elif key_lst[pg.K_LEFT]:
-            kk_rct.move_ip(-2, 0)
+            move = 3
+        kk_rct.move_ip(move_lst[move]) 
         kk_rct.move_ip(-1, 0)    
 
         x = -(tmr%3200)
